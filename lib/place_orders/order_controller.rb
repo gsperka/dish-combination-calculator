@@ -8,6 +8,11 @@ module Orders
       @output = output
     end
 
+    def call
+      options = process
+      render(options)
+    end
+
     def process
       parsed       = parse
       target_price = parsed.shift.pop
