@@ -22,6 +22,14 @@ module Orders
           ]
         end
       end
+
+      context 'with invalid input' do
+      	let(:input) {""}
+      	it 'raises an error if the input is not valid' do 
+      		expect{controller.parse}.to raise_error(ArgumentError, 'The input is not in the correct format')
+      	end
+      end
+
     end
 
 
