@@ -1,4 +1,5 @@
 require 'rspec'
+require 'spec_helper'
 require 'place_orders/order_controller'
 
 module Orders
@@ -28,6 +29,19 @@ module Orders
       	it 'raises an error if the input is not valid' do 
       		expect{controller.parse}.to raise_error(ArgumentError, 'The input is not in the correct format')
       	end
+      end
+    end
+
+    describe '#render' do
+
+      context 'with options of dishes' do
+        let(:options) {[
+          ['mixed fruit', 'french fries']
+        ]}
+        it 'displays dishes' do
+        	response = capture_stdout {controller.render(options)}
+        	expect(response).to eql "\"Combination 1 is: mixed fruit, french fries\"\n"
+        end
       end
 
     end
