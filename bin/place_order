@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$: << File.expand_path(File.join(File.dirname(__FILE__), %w(.. lib)))
+require 'place_orders'
+
+
+if File.exist?(ARGV.first)
+	input = File.read(ARGV.first)
+	output = STDOUT
+	controller = Orders::OrderController.new(input, output)
+	controller.call
+else
+	input  = ARGV.first
+	list_name = input.split(' ')[0]
+	updated_input = input.split("\n")[1..-1].join("\n")
+	output = STDOUT
+	File.open('./menus/' + list_name + '.txt', 'w') {|file| file.write(updated_input)}
+	controller = Orders::OrderController.new(updated_input, output)
+	controller.call
+end
