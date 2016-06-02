@@ -8,6 +8,13 @@ module Orders
       @output = output
     end
 
+    def process
+      parsed       = parse
+      target_price = parsed.shift.pop
+      dishes       = parsed
+      @menu        = menu_source(dishes)
+      @menu.generate_combinations(target_price)
+    end
 
     def parse
       raise ArgumentError.new('The input is not in the correct format') if @input.empty?
@@ -28,6 +35,10 @@ module Orders
           counter += 1
         end
       end
+    end
+
+    def menu_source(dishes)
+      @menu_source ||= Menu.new(dishes)
     end
 
   end
