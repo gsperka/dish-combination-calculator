@@ -6,7 +6,7 @@ Write a program to read in the data file and find any combination of dishes that
 
 ## Assumptions
 
-There were a few assumptions in mind when this program was created. They are:
+There were a few assumptions made when this program was created. They are
 - All price points are positive numbers (and can't be negative)
 - Price points can be duplicated
 - A user can order more than one of each item
