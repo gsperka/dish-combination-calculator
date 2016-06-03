@@ -14,9 +14,9 @@ There were a few assumptions made when this program was created. They are
 
 ## How To
 
-[This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file was given as the default can be found under the ```menus/menu_one.txt``` file. 
+[This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file was given as the default can be found in the ```menus/menu_one.txt``` file. 
  
-The first thing you will want to do is to clone the repository to your local machine:
+The first thing you will want to do is to clone the repository to your local machine
 ```ruby
 cd Desktop
 $ git clone https://github.com/gsperka/dish-combination-calculator.git
@@ -38,7 +38,7 @@ Since menu-one.txt already exists, you can simply type
 bin/place_order menus/menu_one.txt
 ```
 
-inside the terminal. You should see the output return the various possible combinations (if there are any):
+inside the terminal. You should see the output return various possible combinations (if there are any)
 
 ```
 "Combination 1 is: mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit, mixed fruit"
@@ -59,12 +59,20 @@ A few things to note:
 
 - You must place the '$' in front of your argument
 - In this example, 'marianos' is the name of the list. This is important because once you provide the list name, it will then be saved under the menus file so you can access it later if needed. If you do not provide a name for the list, an error will be thrown
+- If your list name is multiple words, connect them with an underscore: red_robin
 - Your target price must be listed after the list name. If this is out of order, an error will be thrown
 
 Once you run the command above, you can then reference that list in the future with the previous command shown:
 ```
 bin/place_order menus/marianos.txt
 ```
+
+-*If later you would like to update the marianos list, you could simply run the same new information command with the same list name (and updated values)
+
+```
+bin/place_order $'marianos\n$5.05\nnachos,$2.15\npizza,$2.75'
+```
+This would then update the marianos list to have nachos, pizza, and a target price of $5.05.
 
 ## Run Tests
 
