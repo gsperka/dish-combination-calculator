@@ -67,7 +67,7 @@ Once you run the command above, you can then reference that list in the future w
 bin/place_order menus/marianos.txt
 ```
 
--*If later you would like to update the marianos list, you could simply run the same new information command with the same list name (and updated values)
+*If later you would like to update the marianos list, you could simply run the command with the same list name (and updated values)
 
 ```
 bin/place_order $'marianos\n$5.05\nnachos,$2.15\npizza,$2.75'
