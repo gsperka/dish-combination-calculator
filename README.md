@@ -47,32 +47,15 @@ inside the terminal. You should see the output return various possible combinati
 
 ## Scenario Two - You are passing in new information for the first time
 
-If you are entering in information for the first time, you will want to execute a different command. It's very important to note that it must follow the exact syntax. If you choose to use double quotes instead of single quotes, an error will be thrown.
+If you are entering in information as an argument, you will want to execute a different command. It's very important to note that it must follow the exact syntax. If you choose to use double quotes instead of single quotes, an error will be thrown.
 
 Sample command:
 
 ```
-bin/place_order $'marianos\n$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35\nhot wings,$3.55\nmozzarella sticks,$4.20\nsampler plate,$5.80'
+bin/place_order $'$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35\nhot wings,$3.55\nmozzarella sticks,$4.20\nsampler plate,$5.80'
 ```
-
-A few things to note:
 
 - You must place the '$' in front of your argument
-- In this example, 'marianos' is the name of the list. This is important because once you provide the list name, it will then be saved under the menus folder so you can access it later if needed. If you do not provide a name for the list, an error will be thrown
-- If your list name is multiple words, connect them with an underscore: red_robin
-- Your target price must be listed after the list name. If this is out of order, an error will be thrown
-
-Once you run the command above, you can then reference that list in the future with the previous command shown:
-```
-bin/place_order menus/marianos.txt
-```
-
-*If later you would like to update the marianos list, you could simply run the command with the same list name (and updated values)
-
-```
-bin/place_order $'marianos\n$5.05\nnachos,$2.15\npizza,$2.75'
-```
-This would then update the marianos list to have nachos, pizza, and a target price of $5.05.
 
 ## Run Tests
 
