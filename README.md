@@ -24,7 +24,7 @@ cd dish-combination-calculator
 ```
 Once inside the repository, you can then run one of two commands neccessary to execute this program properly.
 
-- *I ran this program on my work computer and for some reason, received a permissions error. If this is the case, ```cd``` into the dish-combination-calculator repository and run:
+- *I ran this program on my laptop computer and for some reason, received a permissions error. If this is the case, ```cd``` into the dish-combination-calculator repository and run:
 
 ```
 chmod a+x ./bin/place_order
