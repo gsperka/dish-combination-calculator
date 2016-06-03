@@ -1,0 +1,7 @@
+$20.00
+nachos,$3.00
+pizza,$5.00
+bread sticks,$3.50
+cheese bread,$3.50
+pasta,$5.00
+grand slam dinner,$20.00
