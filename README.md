@@ -14,7 +14,7 @@ There were a few assumptions in mind when this program was created. They are:
 - A user can order more than one of each item
 - The shell used to execute this program is bash 
 
-# How To
+## How To
 
 [This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file that was given as the default can be found under the ```menus/menu_one.txt``` file. 
  
@@ -26,13 +26,13 @@ cd dish-combination-calculator
 ```
 Once inside the repository, you can then run one of two commands neccessary to execute this program properly.
 
-- Note: I ran this program on my work computer and for some reason, received a permissions error. If this is the case, ```cd``` into the dish-combination-calculator repository and run:
+- *I ran this program on my work computer and for some reason, received a permissions error. If this is the case, ```cd``` into the dish-combination-calculator repository and run:
 
 ```
 chmod a+x ./bin/place_order
 ```
 
-# Scenario One - The file already exists
+## Scenario One - The file already exists
 
 Since menu-one.txt already exists, you can simply type
 
@@ -47,9 +47,9 @@ inside the terminal. You should see the output return the various possible combi
 "Combination 2 is: hot wings, hot wings, mixed fruit, sampler plate"
 ```
 
-# Scenario Two - You are passing in new information for the first time
+## Scenario Two - You are passing in new information for the first time
 
-If you are entering in information for the first time, you will want to execute a different command. It's very important to note that it must follow the exact syntax. For example, if you choose to use double quotes instead of single quotes, an error will be thrown.
+If you are entering in information for the first time, you will want to execute a different command. It's very important to note that it must follow the exact syntax. If you choose to use double quotes instead of single quotes, an error will be thrown.
 
 Sample command:
 
@@ -64,10 +64,11 @@ A few things to note:
 - Your target price must be listed after the list name. If this is out of order, an error will be thrown
 
 Once you run the command above, you can then reference that list in the future with the previous command shown:
-
+```
 bin/place_order menus/marianos.txt
+```
 
-# Run Tests
+## Run Tests
 
 All tests are located in the ```spec/place_orders``` file. To run all tests, type the following command:
 
