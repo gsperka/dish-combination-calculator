@@ -16,7 +16,7 @@ There were a few assumptions made when this program was created. They are
 
 [This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file was given as the default and can be found in the ```menus/menu_one.txt``` file. 
  
-The first thing you will want to do is to clone the repository to your local machine
+The first thing you will want to do is to clone the repository to your local machine. Open the terminal and type
 ```ruby
 cd Desktop
 $ git clone https://github.com/gsperka/dish-combination-calculator.git
