@@ -58,7 +58,7 @@ bin/place_order $'marianos\n$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside 
 A few things to note:
 
 - You must place the '$' in front of your argument
-- In this example, 'marianos' is the name of the list. This is important because once you provide the list name, it will then be saved under the menus file so you can access it later if needed. If you do not provide a name for the list, an error will be thrown
+- In this example, 'marianos' is the name of the list. This is important because once you provide the list name, it will then be saved under the menus folder so you can access it later if needed. If you do not provide a name for the list, an error will be thrown
 - If your list name is multiple words, connect them with an underscore: red_robin
 - Your target price must be listed after the list name. If this is out of order, an error will be thrown
 
