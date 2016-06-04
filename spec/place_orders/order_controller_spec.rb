@@ -5,7 +5,7 @@ require 'place_orders/order_controller'
 module Orders
   describe OrderController do
     let(:input)      {"$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35\nhot wings,$3.55\nmozzarella sticks,$4.20\nsampler plate,$5.80'\n"}
-    let(:output)     { nil }
+    let(:output)     { double :Output }
     let(:controller) { OrderController.new(input, output) }
     let(:dishes)     { [["mixed fruit", 2.15], ["french fries", 2.75], ["side salad", 3.35], ["hot wings", 3.55], ["mozzarella sticks", 4.2], ["sampler plate", 5.8]] }
     let(:menu)       { Menu.new(dishes) }
@@ -29,26 +29,26 @@ module Orders
     describe '#call' do
 
       context 'with items listed by their price in ascending order' do
-        let(:input) {"$10.00\npizza,$2.00\ndessert,$3.00\nnachos,$5.00"}
-        it 'states no combinations of dishes are available' do
-          response = capture_stdout {controller.call}
-          expect(response).to eql "\"Combination 1 is: pizza, pizza, pizza, pizza, pizza\"\n\"Combination 2 is: dessert, dessert, pizza, pizza\"\n\"Combination 3 is: dessert, nachos, pizza\"\n\"Combination 4 is: nachos, nachos\"\n"
+        let(:input) {"$7.00\npizza,$2.00\ndessert,$4.00\nnachos,$5.00"}
+        it 'states the combinations of dishes that are available' do
+          allow(output).to receive(:puts).with("Combination 1 is: nachos, pizza")
+          controller.call
         end
       end
 
       context 'with items listed by their price in descending order' do
-        let(:input) {"$10.00\nnachos,$5.00\ndessert,$3.00\npizza,$2.00"}
-        it 'states no combinations of dishes are available' do
-          response = capture_stdout {controller.call}
-          expect(response).to eql "\"Combination 1 is: pizza, pizza, pizza, pizza, pizza\"\n\"Combination 2 is: dessert, dessert, pizza, pizza\"\n\"Combination 3 is: dessert, nachos, pizza\"\n\"Combination 4 is: nachos, nachos\"\n"
+        let(:input) {"$7.00\nnachos,$5.00\ndessert,$4.00\npizza,$2.00"}
+        it 'states the combinations of dishes that are available' do
+          allow(output).to receive(:puts).with("Combination 1 is: nachos, pizza")
+          controller.call
         end
       end
 
       context 'with no combinations available' do
         let(:input) {"$6.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35"}
         it 'states no combinations of dishes are available' do
-          response = capture_stdout {controller.call}
-          expect(response).to eql "\"No combination of dishes!\"\n"
+          allow(output).to receive(:puts).with("No combination of dishes!")
+          controller.call
         end
       end
 
@@ -62,10 +62,12 @@ module Orders
 
     describe '#render' do
       context 'with options of dishes' do
-        let(:options) {[['mixed fruit', 'french fries']]}
+        let(:options) {[
+          ['mixed fruit', 'french fries']
+        ]}
         it 'displays dishes' do
-        	response = capture_stdout {controller.render(options)}
-        	expect(response).to eql "\"Combination 1 is: mixed fruit, french fries\"\n"
+          allow(output).to receive(:puts).with('Combination 1 is: mixed fruit, french fries')
+          controller.render(options)
         end
       end
     end
