@@ -24,7 +24,7 @@ Feature: Integration test
       """
 
   Scenario: via stdin and no combinations
-    Given I run `bin/place_order '$1.05\nmixed fruit,$2.15\nfrench fries,$2.75'`
+    Given I run `bin/place_order '$1.00\nmixed fruit,$2.15\nfrench fries,$2.75'`
     Then the stdout should contain exactly:
       """
       No combination of dishes!
