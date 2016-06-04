@@ -32,11 +32,11 @@ module Orders
 
     def render(options)
       if options.count == 0
-        p "No combination of dishes!"
+        @output.puts "No combination of dishes!"
       else
         counter = 1
         options.each do |o|
-          p "Combination " + counter.to_s + " is: " + o.join(', ')
+          @output.puts "Combination " + counter.to_s + " is: " + o.join(', ')
           counter += 1
         end
       end
