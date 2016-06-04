@@ -3,6 +3,7 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__), %w(.. lib)))
 require 'place_orders'
 
+raise ArgumentError.new('You must pass in a valid list') if ARGV.first == nil
 File.exist?(ARGV.first) ? input = File.read(ARGV.first) : input = ARGV.first
 output = STDOUT
 controller = Orders::OrderController.new(input, output)

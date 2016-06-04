@@ -6,6 +6,7 @@ module Orders
     end
 
     def generate_combinations(target_price)
+      @dishes.sort_by! {|x| x[1]}
       container        = []
       min_price        = @dishes.min { |dish| dish.last }.last
       combination_size = (target_price / min_price).floor
@@ -16,7 +17,7 @@ module Orders
           container << selected if selected
         end
       }
-      
+
       container.uniq.map(&:sort).uniq
     end
 

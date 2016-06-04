@@ -1,0 +1,4 @@
+$10.00
+nachos,$5.00
+pizza,$2.00
+dessert,$3.00

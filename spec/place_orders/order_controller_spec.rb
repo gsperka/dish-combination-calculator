@@ -4,7 +4,7 @@ require 'place_orders/order_controller'
 
 module Orders
   describe OrderController do
-    let(:input) {"$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35\nhot wings,$3.55\nmozzarella sticks,$4.20\nsampler plate,$5.80'\n"}
+    let(:input)      {"$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35\nhot wings,$3.55\nmozzarella sticks,$4.20\nsampler plate,$5.80'\n"}
     let(:output)     { nil }
     let(:controller) { OrderController.new(input, output) }
     let(:dishes)     { [["mixed fruit", 2.15], ["french fries", 2.75], ["side salad", 3.35], ["hot wings", 3.55], ["mozzarella sticks", 4.2], ["sampler plate", 5.8]] }
@@ -24,12 +24,39 @@ module Orders
           ]
         end
       end
+    end
+
+    describe '#call' do
+
+      context 'with items listed by their price in ascending order' do
+        let(:input) {"$10.00\npizza,$2.00\ndessert,$3.00\nnachos,$5.00"}
+        it 'states no combinations of dishes are available' do
+          response = capture_stdout {controller.call}
+          expect(response).to eql "\"Combination 1 is: pizza, pizza, pizza, pizza, pizza\"\n\"Combination 2 is: dessert, dessert, pizza, pizza\"\n\"Combination 3 is: dessert, nachos, pizza\"\n\"Combination 4 is: nachos, nachos\"\n"
+        end
+      end
+
+      context 'with items listed by their price in descending order' do
+        let(:input) {"$10.00\nnachos,$5.00\ndessert,$3.00\npizza,$2.00"}
+        it 'states no combinations of dishes are available' do
+          response = capture_stdout {controller.call}
+          expect(response).to eql "\"Combination 1 is: pizza, pizza, pizza, pizza, pizza\"\n\"Combination 2 is: dessert, dessert, pizza, pizza\"\n\"Combination 3 is: dessert, nachos, pizza\"\n\"Combination 4 is: nachos, nachos\"\n"
+        end
+      end
+
+      context 'with no combinations available' do
+        let(:input) {"$6.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.35"}
+        it 'states no combinations of dishes are available' do
+          response = capture_stdout {controller.call}
+          expect(response).to eql "\"No combination of dishes!\"\n"
+        end
+      end
 
       context 'with invalid input' do
-      	let(:input) {""}
-      	it 'raises an error if the input is not valid' do 
-      		expect{controller.parse}.to raise_error(ArgumentError, 'The input is not in the correct format')
-      	end
+        let(:input) {"4543543534"}
+        it 'raises an error if the input is not valid' do
+          expect{controller.call}.to raise_error(ArgumentError, 'The input is not in the correct format')
+        end
       end
     end
 
@@ -51,6 +78,7 @@ module Orders
           controller.process
         end
       end
+
     end
 
 

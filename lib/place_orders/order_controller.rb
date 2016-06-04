@@ -17,12 +17,12 @@ module Orders
       parsed       = parse
       target_price = parsed.shift.pop
       dishes       = parsed
+      raise ArgumentError.new('The input is not in the correct format') if dishes.empty?
       @menu        = menu_source(dishes)
       @menu.generate_combinations(target_price)
     end
 
     def parse
-      raise ArgumentError.new('The input is not in the correct format') if @input.empty?
       @input.each_line.map { |x|
         x.chomp.split(',').tap { |y|
           y[-1] = y[-1].to_s[1..-1].to_f
