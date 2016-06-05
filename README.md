@@ -21,6 +21,7 @@ The first thing you will want to do is to clone the repository to your local mac
 cd Desktop
 $ git clone https://github.com/gsperka/dish-combination-calculator.git
 cd dish-combination-calculator
+bundle install
 ```
 Once inside the repository, you can then run one of two commands neccessary to execute this program properly.
 
