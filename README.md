@@ -10,12 +10,12 @@ There were a few assumptions made when this program was created. They are
 - All price points are positive numbers (and can't be negative)
 - Price points can be duplicated
 - A user can order more than one of each item
-- The shell used to execute this program is bash 
+- The shell used to execute this program is bash
 
 ## How To
 
-[This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file was given as the default and can be found in the ```menus/menu_one.txt``` file. 
- 
+[This](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt) data file was given as the default and can be found in the ```menus/menu_one.txt``` file.
+
 The first thing you will want to do is to clone the repository to your local machine. Open the terminal and type
 ```ruby
 cd Desktop
@@ -59,7 +59,8 @@ bin/place_order $'$15.05\nmixed fruit,$2.15\nfrench fries,$2.75\nside salad,$3.3
 
 ## Run Tests
 
-All tests are located in the ```spec/place_orders``` file. To run all tests, type the following command:
+### Rspec
+RSpec tests are located in the ```spec/place_orders``` file. To run all rspec tests, type the following command
 
 ```ruby
 cd spec
@@ -71,4 +72,11 @@ or to run a specific test:
 ```ruby
 cd spec
 rspec menu_spec.rb
+```
+### Cucumber
+
+Cucumber integration tests are located under the ```features``` folder. To run these tests, type the following command from the root
+
+```
+cucumber
 ```

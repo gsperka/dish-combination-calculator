@@ -1,5 +1,4 @@
 require 'rspec'
-require 'spec_helper'
 require 'place_orders/order_controller'
 
 module Orders
@@ -27,7 +26,6 @@ module Orders
     end
 
     describe '#call' do
-
       context 'with items listed by their price in ascending order' do
         let(:input) {"$7.00\npizza,$2.00\ndessert,$4.00\nnachos,$5.00"}
         it 'states the combinations of dishes that are available' do
@@ -80,9 +78,6 @@ module Orders
           controller.process
         end
       end
-
     end
-
-
   end
 end

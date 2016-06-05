@@ -6,7 +6,6 @@ module Orders
     let(:menu) { Menu.new(dishes) }
 
     describe '#generate_combinations' do
-
       context 'with dishes that add up to the target price' do
         let(:target_price) { 4.90 }
         let(:dishes)       {[
@@ -65,7 +64,6 @@ module Orders
           expect(menu.generate_combinations(target_price)).to eql [['mixed fruit', 'mixed fruit']].map(&:sort)
         end
       end
-
     end
   end
 end

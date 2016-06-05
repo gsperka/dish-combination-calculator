@@ -6,7 +6,7 @@ module Orders
     end
 
     def generate_combinations(target_price)
-      @dishes.sort_by! {|x| x[1]}
+      sort_by_price_ascending
       container        = []
       min_price        = @dishes.min { |dish| dish.last }.last
       combination_size = (target_price / min_price).floor
@@ -22,6 +22,10 @@ module Orders
     end
 
     private
+
+      def sort_by_price_ascending
+        @dishes.sort_by! {|x| x[1]}
+      end
 
       def select_until(dishes, target_price)
         total = 0
