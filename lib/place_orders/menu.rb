@@ -1,17 +1,21 @@
+require_relative 'dish'
+require 'monetize'
+
 module Orders
   class Menu
 
     def initialize(dishes)
-      @dishes = dishes
+      @dishes = dishes.map {|name,price| Dish.new(name, Monetize.parse(price))}
     end
 
     def generate_combinations(target_price)
-      sort_by_price_ascending
+      target_price = Monetize.parse(target_price)
+      @dishes.sort_by!(&:price)
       container        = []
-      min_price        = @dishes.min { |dish| dish.last }.last
+      min_price        = @dishes.first.price
       combination_size = (target_price / min_price).floor
 
-      @dishes.permutation.to_a.map { |dish|
+      @dishes.permutation { |dish|
         dish.repeated_combination(combination_size) do |item|
           selected = select_until(item, target_price)
           container << selected if selected
@@ -23,24 +27,16 @@ module Orders
 
     private
 
-      def sort_by_price_ascending
-        @dishes.sort_by! {|x| x[1]}
-      end
-
       def select_until(dishes, target_price)
-        total = 0
-        names = []
-
-        dishes.each do |dish|
-          name  = dish.first
-          price = dish.last
-          if total + price <= target_price
-            total += price
-            names << name
+        total = Money.new(0)
+        combination = dishes.each_with_object([]) do |dish, combo|
+          if total + dish.price <= target_price
+            total += dish.price
+            combo << dish
           end
         end
 
-        names if total == target_price
+        combination if total == target_price
       end
 
   end
