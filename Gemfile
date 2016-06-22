@@ -3,3 +3,5 @@ source "https://rubygems.org"
 gem 'rspec'
 gem 'cucumber'
 gem 'aruba'
+gem 'monetize'
+gem 'money'

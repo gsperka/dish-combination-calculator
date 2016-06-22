@@ -15,12 +15,10 @@ module Orders
       min_price        = @dishes.first.price
       combination_size = (target_price / min_price).floor
 
-      @dishes.permutation { |dish|
-        dish.repeated_combination(combination_size) do |item|
-          selected = select_until(item, target_price)
-          container << selected if selected
-        end
-      }
+      @dishes.repeated_combination(combination_size) do |item|
+        selected = select_until(item, target_price)
+        container << selected if selected
+      end
 
       container.uniq.map(&:sort).uniq
     end
